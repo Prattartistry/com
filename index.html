@@ -123,6 +123,7 @@
             margin-left: 1.5rem;
             font-size: 1.2rem;
             transition: var(--transition);
+            position: relative;
         }
 
         .nav-icons a:hover {
@@ -148,6 +149,62 @@
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--light);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            transition: var(--transition);
+            padding: 80px 30px 30px;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 1.1rem;
+            font-weight: 500;
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Page Content */
@@ -319,6 +376,119 @@
 
         .product-card:hover .quick-add {
             transform: translateY(0);
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-header h3 {
+            margin: 0;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 1rem;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-price {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .checkout-btn:hover {
+            background-color: var(--secondary);
         }
 
         /* Collection Header */
@@ -610,9 +780,7 @@
             .instagram-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-        }
-
-        @media (max-width: 768px) {
+            
             .nav-links {
                 display: none;
             }
@@ -620,7 +788,9 @@
             .mobile-menu {
                 display: block;
             }
-            
+        }
+
+        @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -637,6 +807,11 @@
             .newsletter-form button {
                 border-radius: 30px;
                 padding: 15px;
+            }
+            
+            .cart-sidebar {
+                width: 100%;
+                max-width: 100%;
             }
         }
 
@@ -675,17 +850,49 @@
             
             <div class="nav-icons">
                 <a href="#"><i class="fas fa-search"></i></a>
-                <a href="#" class="cart-icon">
+                <a href="#" class="cart-icon" id="cartIcon">
                     <i class="fas fa-shopping-bag"></i>
-                    <span class="cart-count">2</span>
+                    <span class="cart-count" id="cartCount">0</span>
                 </a>
                 <a href="#"><i class="fas fa-user"></i></a>
-                <div class="mobile-menu">
+                <div class="mobile-menu" id="mobileMenuToggle">
                     <i class="fas fa-bars"></i>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a onclick="showPage('home'); closeMobileNav();">Home</a></li>
+            <li><a onclick="showPage('men'); closeMobileNav();">Shop Men</a></li>
+            <li><a onclick="showPage('women'); closeMobileNav();">Shop Women</a></li>
+            <li><a onclick="showPage('custom'); closeMobileNav();">Custom Orders</a></li>
+            <li><a onclick="showPage('about'); closeMobileNav();">About</a></li>
+            <li><a onclick="showPage('contact'); closeMobileNav();">Contact</a></li>
+        </ul>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be added here dynamically -->
+            <p id="emptyCartMessage" style="text-align: center; padding: 2rem;">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Checkout on WhatsApp</button>
+        </div>
+    </div>
 
     <!-- Home Page -->
     <div id="home" class="page active">
@@ -719,7 +926,7 @@
                             <h3 class="product-name">Artisan Cardigan</h3>
                             <p class="product-price">$85.00</p>
                         </div>
-                        <div class="quick-add">Add to Cart</div>
+                        <div class="quick-add" data-id="1" data-name="Artisan Cardigan" data-price="85.00" data-image="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80">Add to Cart</div>
                     </div>
                     
                     <!-- Product 2 -->
@@ -729,7 +936,7 @@
                             <h3 class="product-name">Textured Beanie</h3>
                             <p class="product-price">$32.00</p>
                         </div>
-                        <div class="quick-add">Add to Cart</div>
+                        <div class="quick-add" data-id="2" data-name="Textured Beanie" data-price="32.00" data-image="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1015&q=80">Add to Cart</div>
                     </div>
                     
                     <!-- Product 3 -->
@@ -739,7 +946,7 @@
                             <h3 class="product-name">Cozy Infinity Scarf</h3>
                             <p class="product-price">$45.00</p>
                         </div>
-                        <div class="quick-add">Add to Cart</div>
+                        <div class="quick-add" data-id="3" data-name="Cozy Infinity Scarf" data-price="45.00" data-image="https://images.unsplash.com/photo-1574180045827-681f8a1a9622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80">Add to Cart</div>
                     </div>
                     
                     <!-- Product 4 -->
@@ -749,7 +956,7 @@
                             <h3 class="product-name">Summer Breeze Top</h3>
                             <p class="product-price">$55.00</p>
                         </div>
-                        <div class="quick-add">Add to Cart</div>
+                        <div class="quick-add" data-id="4" data-name="Summer Breeze Top" data-price="55.00" data-image="https://images.unsplash.com/photo-1590736969955-71ac44642b8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80">Add to Cart</div>
                     </div>
                 </div>
             </div>
@@ -918,7 +1125,7 @@
                             <h3 class="product-name">Rugged Cardigan</h3>
                             <p class="product-price">$92.00</p>
                         </div>
-                        <div class="quick-add">Add to Cart</div>
+                        <div class="quick-add" data-id="5" data-name="Rugged Cardigan" data-price="92.00" data-image="https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1038&q=80">Add to Cart</div>
                     </div>
                     
                     <!-- Product 2 -->
@@ -928,7 +1135,7 @@
                             <h3 class="product-name">Fisherman Beanie</h3>
                             <p class="product-price">$35.00</p>
                         </div>
-                        <div class="quick-add">Add to Cart</div>
+                        <div class="quick-add" data-id="6" data-name="Fisherman Beanie" data-price="35.00" data-image="https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80">Add to Cart</div>
                     </div>
                     
                     <!-- Product 3 -->
@@ -938,7 +1145,7 @@
                             <h3 class="product-name">Textured Scarf</h3>
                             <p class="product-price">$48.00</p>
                         </div>
-                        <div class="quick-add">Add to Cart</div>
+                        <div class="quick-add" data-id="7" data-name="Textured Scarf" data-price="48.00" data-image="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80">Add to Cart</div>
                     </div>
                     
                     <!-- Product 4 -->
@@ -948,7 +1155,7 @@
                             <h3 class="product-name">Cable Knit Vest</h3>
                             <p class="product-price">$68.00</p>
                         </div>
-                        <div class="quick-add">Add to Cart</div>
+                        <div class="quick-add" data-id="8" data-name="Cable Knit Vest" data-price="68.00" data-image="https://images.unsplash.com/photo-1593030103066-0093718efeb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80">Add to Cart</div>
                     </div>
                 </div>
             </div>
@@ -985,7 +1192,7 @@
                             <h3 class="product-name">Boho Cardigan</h3>
                             <p class="product-price">$78.00</p>
                         </div>
-                        <div class="quick-add">Add to Cart</div>
+                        <div class="quick-add" data-id="9" data-name="Boho Cardigan" data-price="78.00" data-image="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80">Add to Cart</div>
                     </div>
                     
                     <!-- Product 2 -->
@@ -995,7 +1202,7 @@
                             <h3 class="product-name">Lace Crop Top</h3>
                             <p class="product-price">$52.00</p>
                         </div>
-                        <div class="quick-add">Add to Cart</div>
+                        <div class="quick-add" data-id="10" data-name="Lace Crop Top" data-price="52.00" data-image="https://images.unsplash.com/photo-1590736969955-71ac44642b8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80">Add to Cart</div>
                     </div>
                     
                     <!-- Product 3 -->
@@ -1005,7 +1212,7 @@
                             <h3 class="product-name">Summer Maxi Dress</h3>
                             <p class="product-price">$120.00</p>
                         </div>
-                        <div class="quick-add">Add to Cart</div>
+                        <div class="quick-add" data-id="11" data-name="Summer Maxi Dress" data-price="120.00" data-image="https://images.unsplash.com/photo-1576566588020-8edb5fa5e6e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80">Add to Cart</div>
                     </div>
                     
                     <!-- Product 4 -->
@@ -1015,7 +1222,7 @@
                             <h3 class="product-name">Infinity Scarf</h3>
                             <p class="product-price">$45.00</p>
                         </div>
-                        <div class="quick-add">Add to Cart</div>
+                        <div class="quick-add" data-id="12" data-name="Infinity Scarf" data-price="45.00" data-image="https://images.unsplash.com/photo-1574180045827-681f8a1a9622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80">Add to Cart</div>
                     </div>
                 </div>
             </div>
@@ -1122,7 +1329,7 @@
                     </div>
                     <div class="about-text">
                         <h3>Contact Information</h3>
-                        <p><i class="fas fa-envelope"></i> hello@stitchcraft.com</p>
+                        <p><i class="fas fa-envelope"></i> hello@prattsartisty.com</p>
                         <p><i class="fas fa-phone"></i> (123) 456-7890</p>
                         <p><i class="fas fa-map-marker-alt"></i> Portland, OR</p>
                         
@@ -1176,7 +1383,7 @@
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> hello@stitchcraft.com</li>
+                        <li><i class="fas fa-envelope"></i> hello@prattsartisty.com</li>
                         <li><i class="fas fa-phone"></i> (123) 456-7890</li>
                         <li><i class="fas fa-map-marker-alt"></i> Portland, OR</li>
                     </ul>
@@ -1190,6 +1397,9 @@
     </footer>
 
     <script>
+        // Cart functionality
+        let cart = [];
+        
         // Page navigation functionality
         function showPage(pageId) {
             // Hide all pages
@@ -1227,7 +1437,32 @@
         mobileMenuToggle.addEventListener('click', toggleMobileNav);
         overlay.addEventListener('click', closeMobileNav);
 
-        // Product functionality
+        // Cart functionality
+        const cartIcon = document.getElementById('cartIcon');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cartCount');
+        const cartTotal = document.getElementById('cartTotal');
+        const emptyCartMessage = document.getElementById('emptyCartMessage');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        
+        // Open cart sidebar
+        cartIcon.addEventListener('click', (e) => {
+            e.preventDefault();
+            cartSidebar.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Close cart sidebar
+        closeCart.addEventListener('click', () => {
+            cartSidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        // Add to cart functionality
         document.addEventListener('DOMContentLoaded', function() {
             // Product filter functionality
             const filterButtons = document.querySelectorAll('.filter-btn');
@@ -1253,14 +1488,18 @@
             
             // Quick add to cart functionality
             const quickAddButtons = document.querySelectorAll('.quick-add');
-            const cartCount = document.querySelector('.cart-count');
-            let count = 2;
             
             quickAddButtons.forEach(button => {
                 button.addEventListener('click', (e) => {
                     e.preventDefault();
-                    count++;
-                    cartCount.textContent = count;
+                    
+                    const productId = button.getAttribute('data-id');
+                    const productName = button.getAttribute('data-name');
+                    const productPrice = parseFloat(button.getAttribute('data-price'));
+                    const productImage = button.getAttribute('data-image');
+                    
+                    // Add product to cart
+                    addToCart(productId, productName, productPrice, productImage);
                     
                     // Animation feedback
                     button.textContent = 'Added!';
@@ -1269,10 +1508,104 @@
                     }, 1500);
                 });
             });
+            
+            // Checkout functionality
+            checkoutBtn.addEventListener('click', () => {
+                if (cart.length === 0) {
+                    alert('Your cart is empty!');
+                    return;
+                }
+                
+                // Create WhatsApp message
+                let message = "Hello! I'd like to place an order from PrattsArtisty:%0A%0A";
+                
+                cart.forEach(item => {
+                    message += `- ${item.name}: $${item.price.toFixed(2)}%0A`;
+                });
+                
+                message += `%0ATotal: $${calculateTotal().toFixed(2)}%0A%0A`;
+                message += "Please let me know the next steps for payment and delivery.";
+                
+                // Replace with your WhatsApp number (remove any spaces or special characters)
+                const whatsappNumber = "1234567890"; // Replace with your actual number
+                
+                // Open WhatsApp with the message
+                window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+            });
         });
+        
+        // Add product to cart
+        function addToCart(id, name, price, image) {
+            // Check if product already in cart
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    image: image,
+                    quantity: 1
+                });
+            }
+            
+            updateCartDisplay();
+        }
+        
+        // Remove product from cart
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartDisplay();
+        }
+        
+        // Update cart display
+        function updateCartDisplay() {
+            // Update cart count
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update cart items
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                emptyCartMessage.style.display = 'block';
+            } else {
+                emptyCartMessage.style.display = 'none';
+                
+                cart.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">$${item.price.toFixed(2)} x ${item.quantity}</div>
+                            <button class="cart-item-remove" data-id="${item.id}">Remove</button>
+                        </div>
+                    `;
+                    cartItems.appendChild(cartItem);
+                });
+                
+                // Add event listeners to remove buttons
+                const removeButtons = document.querySelectorAll('.cart-item-remove');
+                removeButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const productId = button.getAttribute('data-id');
+                        removeFromCart(productId);
+                    });
+                });
+            }
+            
+            // Update cart total
+            cartTotal.textContent = `$${calculateTotal().toFixed(2)}`;
+        }
+        
+        // Calculate cart total
+        function calculateTotal() {
+            return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+        }
     </script>
 </body>
 </html>
-
-
-
