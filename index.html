@@ -24,10 +24,6 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: 'Montserrat', sans-serif;
             color: var(--text);
@@ -67,18 +63,17 @@
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 600;
             color: var(--accent);
             text-decoration: none;
             display: flex;
             align-items: center;
-            z-index: 1001;
         }
 
         .logo i {
             margin-right: 8px;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
         }
 
         .nav-links {
@@ -87,7 +82,7 @@
         }
 
         .nav-links li {
-            margin-left: 1.5rem;
+            margin-left: 2rem;
         }
 
         .nav-links a {
@@ -97,7 +92,6 @@
             transition: var(--transition);
             position: relative;
             cursor: pointer;
-            font-size: 0.95rem;
         }
 
         .nav-links a:hover {
@@ -126,10 +120,9 @@
 
         .nav-icons a {
             color: var(--dark);
-            margin-left: 1.2rem;
-            font-size: 1.1rem;
+            margin-left: 1.5rem;
+            font-size: 1.2rem;
             transition: var(--transition);
-            position: relative;
         }
 
         .nav-icons a:hover {
@@ -155,64 +148,6 @@
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--dark);
-            z-index: 1001;
-        }
-
-        /* Mobile Navigation */
-        .mobile-nav {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100vh;
-            background-color: var(--light);
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            z-index: 999;
-            transition: var(--transition);
-            padding: 80px 30px 30px;
-            overflow-y: auto;
-        }
-
-        .mobile-nav.active {
-            right: 0;
-        }
-
-        .mobile-nav-links {
-            list-style: none;
-        }
-
-        .mobile-nav-links li {
-            margin-bottom: 1.5rem;
-        }
-
-        .mobile-nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-size: 1.1rem;
-            font-weight: 500;
-            display: block;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 998;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
         }
 
         /* Page Content */
@@ -232,8 +167,7 @@
 
         /* Hero Section */
         .hero {
-            height: 85vh;
-            min-height: 500px;
+            height: 80vh;
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1015&q=80');
             background-size: cover;
             background-position: center;
@@ -241,23 +175,22 @@
             align-items: center;
             color: white;
             text-align: center;
-            padding: 0 20px;
         }
 
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             margin-bottom: 1.5rem;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            line-height: 1.2;
         }
 
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 2rem;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
@@ -266,7 +199,7 @@
             display: inline-block;
             background-color: var(--accent);
             color: white;
-            padding: 14px 32px;
+            padding: 12px 30px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
@@ -274,7 +207,6 @@
             border: none;
             cursor: pointer;
             font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
         }
 
         .btn:hover {
@@ -286,7 +218,7 @@
         /* Products Section */
         .section-title {
             text-align: center;
-            margin: 3rem 0 2rem;
+            margin: 4rem 0 2rem;
             position: relative;
         }
 
@@ -304,19 +236,18 @@
             justify-content: center;
             margin-bottom: 2rem;
             flex-wrap: wrap;
-            gap: 10px;
         }
 
         .filter-btn {
             background: none;
             border: none;
-            padding: 10px 18px;
+            padding: 8px 20px;
+            margin: 0 10px;
             font-family: 'Montserrat', sans-serif;
             font-weight: 500;
             cursor: pointer;
             transition: var(--transition);
             border-radius: 20px;
-            font-size: 0.9rem;
         }
 
         .filter-btn.active, .filter-btn:hover {
@@ -326,8 +257,8 @@
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
             margin-bottom: 4rem;
         }
 
@@ -346,7 +277,7 @@
         }
 
         .product-img {
-            height: 280px;
+            height: 300px;
             width: 100%;
             object-fit: cover;
             transition: var(--transition);
@@ -357,18 +288,18 @@
         }
 
         .product-info {
-            padding: 1.2rem;
+            padding: 1.5rem;
         }
 
         .product-name {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 0.5rem;
         }
 
         .product-price {
             font-weight: 600;
             color: var(--accent);
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
         .quick-add {
@@ -384,7 +315,6 @@
             transition: var(--transition);
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.9rem;
         }
 
         .product-card:hover .quick-add {
@@ -393,8 +323,7 @@
 
         /* Collection Header */
         .collection-header {
-            height: 60vh;
-            min-height: 400px;
+            height: 50vh;
             background-size: cover;
             background-position: center;
             display: flex;
@@ -402,7 +331,6 @@
             color: white;
             text-align: center;
             margin-bottom: 3rem;
-            padding: 0 20px;
         }
 
         .collection-header.men {
@@ -415,14 +343,14 @@
 
         /* About Section */
         .about {
-            padding: 4rem 0;
+            padding: 5rem 0;
             background-color: var(--light);
         }
 
         .about-content {
             display: flex;
             align-items: center;
-            gap: 3rem;
+            gap: 4rem;
         }
 
         .about-text {
@@ -449,19 +377,19 @@
 
         /* Testimonials */
         .testimonials {
-            padding: 4rem 0;
+            padding: 5rem 0;
             background-color: var(--primary);
         }
 
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
         }
 
         .testimonial-card {
             background-color: white;
-            padding: 1.8rem;
+            padding: 2rem;
             border-radius: 8px;
             box-shadow: var(--shadow);
         }
@@ -506,18 +434,18 @@
 
         /* Instagram Section */
         .instagram {
-            padding: 4rem 0;
+            padding: 5rem 0;
             background-color: var(--light);
         }
 
         .instagram-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
         }
 
         .instagram-item {
-            height: 150px;
+            height: 200px;
             overflow: hidden;
             border-radius: 4px;
             position: relative;
@@ -559,7 +487,7 @@
 
         /* Newsletter */
         .newsletter {
-            padding: 4rem 0;
+            padding: 5rem 0;
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1585821569331-f071db2abd8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
             background-size: cover;
             background-position: center;
@@ -588,7 +516,6 @@
             border: none;
             border-radius: 30px 0 0 30px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
         }
 
         .newsletter-form button {
@@ -599,7 +526,6 @@
             border-radius: 0 30px 30px 0;
             cursor: pointer;
             transition: var(--transition);
-            font-size: 1rem;
         }
 
         .newsletter-form button:hover {
@@ -610,20 +536,20 @@
         footer {
             background-color: var(--dark);
             color: white;
-            padding: 3rem 0 2rem;
+            padding: 4rem 0 2rem;
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 2rem;
+            gap: 40px;
+            margin-bottom: 3rem;
         }
 
         .footer-column h3 {
             color: var(--secondary);
-            margin-bottom: 1.2rem;
-            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
         }
 
         .footer-links {
@@ -631,14 +557,13 @@
         }
 
         .footer-links li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .footer-links a {
             color: #ccc;
             text-decoration: none;
             transition: var(--transition);
-            font-size: 0.9rem;
         }
 
         .footer-links a:hover {
@@ -647,15 +572,15 @@
 
         .social-links {
             display: flex;
-            gap: 12px;
+            gap: 15px;
             margin-top: 1rem;
         }
 
         .social-links a {
             color: white;
             background-color: rgba(255, 255, 255, 0.1);
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -673,7 +598,7 @@
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #aaa;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
 
         /* Responsive Design */
@@ -685,7 +610,9 @@
             .instagram-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-            
+        }
+
+        @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
@@ -693,24 +620,9 @@
             .mobile-menu {
                 display: block;
             }
-        }
-
-        @media (max-width: 768px) {
+            
             .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-                gap: 20px;
-            }
-            
-            .product-img {
-                height: 240px;
+                font-size: 2.5rem;
             }
             
             .newsletter-form {
@@ -726,43 +638,11 @@
                 border-radius: 30px;
                 padding: 15px;
             }
-            
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
         }
 
         @media (max-width: 576px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            .hero {
-                height: 75vh;
-                min-height: 450px;
-            }
-            
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .btn {
-                padding: 12px 28px;
-                font-size: 0.95rem;
-            }
-            
             .products-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .product-filters {
-                gap: 8px;
-            }
-            
-            .filter-btn {
-                padding: 8px 16px;
-                font-size: 0.85rem;
             }
             
             .instagram-grid {
@@ -771,41 +651,6 @@
             
             .testimonial-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-            
-            .section-title {
-                margin: 2.5rem 0 1.5rem;
-            }
-            
-            .about, .testimonials, .instagram, .newsletter {
-                padding: 3rem 0;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .logo {
-                font-size: 1.3rem;
-            }
-            
-            .nav-icons a {
-                margin-left: 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 1.6rem;
-            }
-            
-            .instagram-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .instagram-item {
-                height: 200px;
             }
         }
     </style>
@@ -835,25 +680,12 @@
                     <span class="cart-count">2</span>
                 </a>
                 <a href="#"><i class="fas fa-user"></i></a>
-                <div class="mobile-menu" id="mobileMenuToggle">
+                <div class="mobile-menu">
                     <i class="fas fa-bars"></i>
                 </div>
             </div>
         </div>
     </header>
-
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" id="mobileNav">
-        <ul class="mobile-nav-links">
-            <li><a onclick="showPage('home'); closeMobileNav();">Home</a></li>
-            <li><a onclick="showPage('men'); closeMobileNav();">Shop Men</a></li>
-            <li><a onclick="showPage('women'); closeMobileNav();">Shop Women</a></li>
-            <li><a onclick="showPage('custom'); closeMobileNav();">Custom Orders</a></li>
-            <li><a onclick="showPage('about'); closeMobileNav();">About</a></li>
-            <li><a onclick="showPage('contact'); closeMobileNav();">Contact</a></li>
-        </ul>
-    </div>
-    <div class="overlay" id="overlay"></div>
 
     <!-- Home Page -->
     <div id="home" class="page active">
@@ -1184,6 +1016,120 @@
                             <p class="product-price">$45.00</p>
                         </div>
                         <div class="quick-add">Add to Cart</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Custom Orders Page -->
+    <div id="custom" class="page">
+        <section class="collection-header" style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1585821569331-f071db2abd8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Custom Orders</h1>
+                    <p>Bring your unique vision to life with a one-of-a-kind handmade piece.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Create Something Unique</h2>
+                        <p>Have a specific design in mind? Want a custom color or size? I love collaborating with customers to create unique pieces that perfectly match their vision.</p>
+                        <p>Whether it's a special gift, a wedding piece, or simply something you've been dreaming of, I'll work closely with you throughout the process to ensure the final product exceeds your expectations.</p>
+                        <p>Custom orders typically take 2-4 weeks to complete, depending on complexity. Contact me to discuss your ideas and get a quote.</p>
+                        <a href="#" class="btn" style="margin-top: 20px;" onclick="showPage('contact')">Start Your Custom Order</a>
+                    </div>
+                    <div class="about-img">
+                        <img src="https://images.unsplash.com/photo-1585821569331-f071db2abd8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Custom Crochet">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <section class="collection-header" style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Our Story</h1>
+                    <p>Learn about the passion and craftsmanship behind StitchCraft.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Handmade With Love</h2>
+                        <p>I'm a crochet designer and small business owner who creates unique, handmade pieces for both men and women. Every outfit I make is crafted with care, creativity, and attention to detail — from cozy casual wear to elegant statement designs.</p>
+                        <p>Crochet is not just my craft, it's my passion, and I love bringing ideas to life through my hands. Each piece is made with high-quality, natural fibers that feel wonderful against your skin and stand the test of time.</p>
+                        <p>When you purchase from StitchCraft, you're not just buying clothing — you're investing in a piece of wearable art that tells a story of craftsmanship and dedication.</p>
+                        <h3>Our Values</h3>
+                        <ul>
+                            <li>Quality craftsmanship with attention to detail</li>
+                            <li>Sustainable materials and practices</li>
+                            <li>Unique, one-of-a-kind designs</li>
+                            <li>Supporting local artisans and small businesses</li>
+                        </ul>
+                    </div>
+                    <div class="about-img">
+                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Crochet Designer">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <section class="collection-header" style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Get In Touch</h1>
+                    <p>Have questions or want to discuss a custom order? We'd love to hear from you.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Contact Us</h2>
+                        <p>We're here to help with any questions about our products, custom orders, or anything else you'd like to know about StitchCraft.</p>
+                        
+                        <div style="margin-top: 2rem;">
+                            <h3>Send Us a Message</h3>
+                            <form style="margin-top: 1rem;">
+                                <div style="margin-bottom: 1rem;">
+                                    <input type="text" placeholder="Your Name" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-family: 'Montserrat', sans-serif;">
+                                </div>
+                                <div style="margin-bottom: 1rem;">
+                                    <input type="email" placeholder="Your Email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-family: 'Montserrat', sans-serif;">
+                                </div>
+                                <div style="margin-bottom: 1rem;">
+                                    <textarea placeholder="Your Message" rows="5" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-family: 'Montserrat', sans-serif;"></textarea>
+                                </div>
+                                <button type="submit" class="btn">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="about-text">
+                        <h3>Contact Information</h3>
+                        <p><i class="fas fa-envelope"></i> hello@stitchcraft.com</p>
+                        <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Portland, OR</p>
+                        
+                        <h3 style="margin-top: 2rem;">Business Hours</h3>
+                        <p>Monday - Friday: 9am - 5pm PST</p>
+                        <p>Saturday: 10am - 3pm PST</p>
+                        <p>Sunday: Closed</p>
                     </div>
                 </div>
             </div>
